@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import urlRoutes from './routes/url.js';
 dotenv.config();
+console.log("PORT:", process.env.PORT, "MONGO_URI exists:", !!process.env.MONGO_URI);
 const app=express();
 app.use(express.json())
 app.use(cors({
@@ -16,7 +17,7 @@ mongoose.connect(process.env.MONGO_URI)
 .then(()=>{
     console.log("conected to mongo db");
     app.listen(process.env.PORT,()=>{
-        console.log(`server running on port`)
+        console.log(`server running on port ${process.env.PORT}`)
     });
 })
 .catch((err)=>{
